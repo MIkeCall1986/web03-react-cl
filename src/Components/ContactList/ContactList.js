@@ -3,30 +3,34 @@ import React from "react";
 // ContactItem
 import ContactItem from "./ContactItem/ContactItem";
 
-const ContactList = () => {
+const ContactList = ({ContactList}) => {
+    console.log("ContactList props ", ContactList);
+    const item = ContactList.map(contact =>{
+        return <ContactItem key={contact.Id} {...contact} />
+    })
     return(
-            <div class="container bootstrap snippets bootdeys bootdey">
-                <div class="row decor-default">
-                    <div class="col-sm-12">
-                        <div class="contacts-list">
-                            <h5 class="title">Contact List</h5>
-                            <div class="unit head">
-                                <div class="field name">
-                                <div class="check">
+            <div className="container bootstrap snippets bootdeys bootdey">
+                <div className="row decor-default">
+                    <div className="col-sm-12">
+                        <div className="contacts-list">
+                            <h5 className="title">Contact List</h5>
+                            <div className="unit head">
+                                <div className="field name">
+                                <div className="check">
                                     <input id="cb1" name="cb1" type="checkbox" />
-                                    <label for="cb1"></label>
+                                    <label htmlFor="cb1"></label>
                                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></div>
                                 Name
                                 </div>
-                                <div class="field phone">
+                                <div className="field phone">
                                 Phone
                                 </div>
-                                <div class="field email icons">
+                                <div className="field email icons">
                                 Email
-                                <i class="fas fa-user-edit"></i>
+                                <i className="fas fa-user-edit"></i>
                                 </div>
                             </div>
-                            <ContactItem/>
+                           {item}
                         </div>
                     </div>
                 </div>
