@@ -11,26 +11,29 @@ import ContactList from "./Components/ContactList/ContactList";
 class App extends Component {
 
   state = {
-    List:[
+    List: [
       {
         "Id": uuidv4(),
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar1.png",
+        "Avatar": 67,
+        "Gender": "men",
         "Name": "Alexander Verdnam",
         "Phone": "+1-800-600-9898",
         "Email": "example@gmail.com",
         "Status": "Friend"
       },
-       {
-         "Id": uuidv4(),
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar5.png",
+      {
+        "Id": uuidv4(),
+        "Avatar": 5,
+        "Gender": "men",
         "Name": "Jack Jackson",
         "Phone": "+1-800-700-1234",
         "Email": "jack@gmail.com",
         "Status": "Friend"
       },
-       {
-         "Id": uuidv4(),
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar3.png",
+      {
+        "Id": uuidv4(),
+        "Avatar": 77,
+        "Gender": "women",
         "Name": "Camilla Terry",
         "Phone": "+1-800-745-1854",
         "Email": "camt@gmail.com",
@@ -39,15 +42,27 @@ class App extends Component {
     ]
   }
 
-  render(){
+  onDelete = (Id) => {
+    const index = this.state.List.findIndex((elem) => elem.Id === Id);
+    const partOne = this.state.List.slice(0, index);
+    const partTwo = this.state.List.slice(index + 1);
+    const tmpList = [...partOne, ...partTwo];
+    this.setState({
+      List: tmpList
+    })
+
+  }
+
+  render() {
     const { List } = this.state;
-    return(
-        <Fragment>
-          <Header/>
-          <ContactList ContactList={List} />
-          <Footer/>
-        </Fragment>
-      )
+    console.log("List = ", List)
+    return (
+      <Fragment>
+        <Header />
+        <ContactList onDelete={this.onDelete} ContactList={List} />
+        <Footer />
+      </Fragment>
+    )
   }
 }
 
